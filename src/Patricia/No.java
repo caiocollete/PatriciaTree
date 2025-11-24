@@ -1,7 +1,7 @@
 package Patricia;
 
 public class No {
-    public final static int n = 27;
+    public final static int n = 26;
     private String string;
     private No[] vLig;
 
