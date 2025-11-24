@@ -15,7 +15,6 @@ public class Fila {
             if(this.inicio.getProx() == null){
                 n = inicio.getInfo();
                 this.inicio = null;
-                return n;
             }
             else{
                 n = inicio.getInfo();
