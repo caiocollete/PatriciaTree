@@ -15,7 +15,10 @@ public class Main {
             p.insert("stock");
             p.insert("stop");
 
-            //p.exibir();
+            System.out.println("Palavras na árvore:");
+            p.exibir();
+
+            System.out.println("todos os nodos da árvore com seus conteúdos nível a nível:");
             p.exibir_nivel();
     }
 }
