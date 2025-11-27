@@ -50,6 +50,8 @@ public class Patricia {
     private String split(No atual, String part) {
         boolean flag = true;
         int i;
+        int posStringNode, posNova;
+        No aux;
         for(i=0; i<part.length() && i<atual.getString().length() && flag; i++){
             if (part.charAt(i) != atual.getString().charAt(i))
                 flag = false;
@@ -57,8 +59,8 @@ public class Patricia {
 
         // nenhumas das string chegou ao final, portanto, devemos splitar a string do nó
         if(!flag){
-            int posStringNode = searchPosition(atual.getString().charAt(i-1));
-            No aux = new No(atual.getString().substring(i-1), atual.getEnd());
+            posStringNode = searchPosition(atual.getString().charAt(i-1));
+            aux = new No(atual.getString().substring(i-1), atual.getEnd());
             atual.setEnd(false);
             atual.setString(atual.getString().substring(0, i-1));
 
@@ -70,23 +72,25 @@ public class Patricia {
             atual.setvLig(posStringNode, aux);
 
             // posição onde vai inserir a nova palavra
-            int posNova = searchPosition(part.charAt(i-1));
+            posNova = searchPosition(part.charAt(i - 1));
             // insere na posição o restante da palavra
             aux = new No(part.substring(i-1), true);
             atual.setvLig(posNova, aux);
             return "";
-        }
-        else if(i>atual.getString().length()){
+        } else if(i<atual.getString().length()) {
+            posStringNode = searchPosition(atual.getString().charAt(i));
+            aux = new No(atual.getString().substring(i), atual.getEnd());
+            atual.setString(part);
             atual.setEnd(true);
-            No aux = new No(atual.getString().substring(i), true);
             if(!isFolha(atual)){
                 aux.copiaLigacoes(atual);
                 atual.resetaLigacoes();
             }
-            atual.setvLig(searchPosition(aux.getString().charAt(0)), aux);
+            atual.setvLig(posStringNode, aux);
             return "";
-        }
-        else if(i==atual.getString().length()){
+        } else if (i<part.length()) {
+            // se a palavra que eu tenho for maior que a que possui no nó, deixa com que
+        } else {
             atual.setEnd(true);
         }
         return part.substring(i);

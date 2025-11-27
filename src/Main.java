@@ -6,7 +6,7 @@ public class Main {
 
             p.insert("bear");
             p.insert("ben");
-            p.insert("be");
+            p.insert("bee");
             p.insert("bell");
             p.insert("bid");
             p.insert("bull");
