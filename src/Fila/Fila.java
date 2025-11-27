@@ -9,29 +9,28 @@ public class Fila {
         this.inicio = null;
     }
 
-    public No dequeue(){
-        No n = null;
+    public NoFila dequeue(){
+        NoFila n = null;
         if(this.inicio != null){
+            n = inicio;
             if(this.inicio.getProx() == null){
-                n = inicio.getInfo();
                 this.inicio = null;
             }
             else{
-                n = inicio.getInfo();
                 inicio = inicio.getProx();
             }
         }
         return n;
     }
-    public void enqueue(No n){
+    public void enqueue(No n, int nivel){
         if(this.inicio == null)
-            inicio = new NoFila(n);
+            inicio = new NoFila(n, nivel);
         else{
             NoFila aux = inicio;
             while(aux.getProx() != null){
                 aux = aux.getProx();
             }
-            aux.setProx(new NoFila(n));
+            aux.setProx(new NoFila(n, nivel));
         }
     }
     public boolean isEmpty(){

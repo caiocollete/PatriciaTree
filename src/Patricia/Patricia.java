@@ -1,6 +1,6 @@
 package Patricia;
 
-import Fila.Fila;
+import Fila.*;
 
 public class Patricia {
     private No raiz;
@@ -116,15 +116,15 @@ public class Patricia {
     public void exibir_nivel(){
         Fila f = new Fila();
 
-        f.enqueue(raiz);
+        f.enqueue(raiz, 0);
 
         while(!f.isEmpty()){
-            No n = f.dequeue();
+            NoFila n = f.dequeue();
 
-            System.out.println(n.getString());
+            System.out.println(n.toString());
             for(int i = 0; i < No.n; i++){
-                if(n.getvLig(i)!=null)
-                    f.enqueue(n.getvLig(i));
+                if(n.getInfo().getvLig(i)!=null)
+                    f.enqueue(n.getInfo().getvLig(i), n.getNivel()+1);
             }
         }
     }
